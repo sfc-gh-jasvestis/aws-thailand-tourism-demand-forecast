@@ -9,7 +9,6 @@ Thailand targets 35 million tourists but planning is fragmented — TAT, hotels,
 ```mermaid
 flowchart LR
     KIN[Kinesis] --> SPS[Snowpipe Streaming]
-    SP --> RAW[RAW Tables]
     SPS --> RAW
     RAW --> DT[Dynamic Tables]
     DT --> ML[ML Functions]
