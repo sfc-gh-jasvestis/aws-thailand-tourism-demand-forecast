@@ -123,7 +123,7 @@ Industry research and Snowflake customer outcomes:
 - **ML-powered demand forecasting improves accuracy by 20-30% vs traditional time-series methods** — [McKinsey Travel](https://www.mckinsey.com/industries/travel-logistics-and-infrastructure/our-insights)
 - **Thailand's visa-free policy for Chinese tourists increased arrivals by 45% within 3 months** — [TAT Thailand](https://www.tat.or.th/en)
 - **Accurate demand forecasting enables 10-15% better capacity utilization and revenue capture** — [WTTC](https://wttc.org/research)
-- **Wyndham Hotels** (Snowflake customer): unified 30+ brands on a single data platform, enabling real-time revenue optimization across 9,000+ properties -- [snowflake.com/customers/wyndham](https://www.snowflake.com/en/customers/all-customers/case-study/wyndham/)
+- **Wyndham Hotels** (Snowflake customer): unified 30+ brands on a single data platform, enabling real-time revenue optimization across 9,000+ properties -- [snowflake.com/customers/accor](https://www.snowflake.com/en/customers/all-customers/case-study/accor/)
 
 ## Key Demo Numbers
 
