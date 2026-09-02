@@ -1,109 +1,82 @@
-# Demo Script: Tourism Demand Forecasting
-## ~4-Minute Recorded Walkthrough
-**Format**: Screen recording with voiceover
-**Target**: Customer meeting / booth loop / social share
-**Narrative**: "Snowflake forecasts tourist arrivals by source market 90 days ahead, detects demand anomalies, and powers Snowflake Intelligence for tourism planning — replacing disconnected forecasting tools with unified ML-native analytics"
-**Demo Mode**: Open app with `?demo=true` for presenter notes
+# Tourism Demand Forecasting
 
----
+**Thailand - Tourism & Hospitality**
+Use case: Demand Forecasting & Planning
 
-## Two Personas
+> National tourism demand forecasting by source market — ML.FORECAST predicts arrivals from 20 source markets, enabling capacity planning, marketing spend allocation, and workforce scheduling across Thailand's tourism ecosystem.
 
-| Persona | Role | Tool | What they care about |
-|---|---|---|---|
-| **Dr. Arunee Treevichit** | Chief Strategy Officer (Tourism Group) | React App (SPCS) | Source market diversification, seasonal demand patterns, macro risks, capacity planning |
-| **Thanakorn Petchnoi** | Demand Planning Analyst | Amazon QuickSight | Forecast accuracy, booking lead times, seasonality decomposition, event impact |
+## Why Snowflake
 
----
+Snowflake forecasts tourist arrivals by source market 90 days ahead, detects demand anomalies, and powers Snowflake Intelligence for tourism planning — replacing disconnected forecasting tools with unified ML-native analytics
 
-## What's Built
+- **ML.FORECAST for 100 market-destination pairs** - Only demo forecasting tourism demand at market × destination granularity with confidence bands
+- **Composite leading indicator (flights + visa + search)** - Multi-signal early warning system predicting demand 60-90 days ahead
+- **Snowflake Intelligence for tourism planning** - Natural language interface for strategic demand questions
+- **Thai tourism ecosystem context** - 20 source markets × 5 destinations with realistic seasonal and policy-driven patterns
+- **Visa policy impact analysis** - AI extracts and quantifies impact of policy changes on demand forecasts
+- **Forecast accuracy monitoring** - Automated detection of forecast degradation with model retrain triggers
 
-| Layer | Component | Detail |
+## What is deployed
+
+| | |
+|---|---|
+| Database | `THAILAND_TOURISM_DEMAND_FORECAST` |
+| Service | `THAILAND_TOURISM_DEMAND_FORECAST_APP` |
+| Compute pool | `SEA_DEMOS_THAILAND_POOL` |
+| Dimension table | `RAW.THAI_TOURISM_POLICY` (20 rows) |
+| Fact table | `RAW.SEARCH_TRENDS` (250,000 rows, 90 days) |
+| Curated layer | `CURATED.PERFORMANCE_SUMMARY`, `CURATED.TREND_ANALYSIS`, `CURATED.KPI_SUMMARY` |
+| Currency | THB (฿) |
+
+Regions in play: Bangkok, Chonburi, Rayong, Chiang Mai, Songkhla
+Segments: Leisure FIT, Group Tour, MICE, Long Stay
+
+Dynamic tables are created suspended and refreshed on demand:
+
+```bash
+./refresh_demo_data.sh THAILAND_TOURISM_DEMAND_FORECAST
+```
+
+## KPI cards
+
+Every card below is served live from `CURATED.KPI_SUMMARY`. The app keeps the
+original literal as a fallback, so it still renders if Snowflake is unreachable.
+
+| Card | Value | Backed by |
 |---|---|---|
-| **RAW** | 8 tables | ARRIVAL_HISTORY (146000), FLIGHT_SCHEDULES (25000), VISA_APPLICATIONS (80000), SEARCH_TRENDS (300000), EVENT_CALENDAR (500), MACRO_INDICATORS (960), HOTEL_CAPACITY (2500), THAI_TOURISM_POLICY (20) |
-| **CURATED** | 4 Dynamic Tables | ARRIVAL_TIMESERIES, DEMAND_LEADING_INDICATORS, FORECAST_VS_ACTUAL, CAPACITY_UTILIZATION |
-| **ML** | ML.FORECAST + ML.ANOMALY_DETECTION | Forecasting + anomaly detection |
-| **AI** | COMPLETE, AI_CLASSIFY, AI_EXTRACT | Classification + extraction |
-| **Search** | Cortex Search | 20 documents indexed |
-| **Agent** | TOURISM_DEMAND_AGENT | Semantic View + Search tools |
+| Arrivals Forecast (30d) | `3.2M` | average per event |
+| Revenue Forecast | `฿148B` | average per event |
+| Forecast Accuracy | `94.1%` | average per event |
+| Markets Tracked | `42` | total across Thai Tourism Policy |
+| China Recovery | `78%` | average per event |
+| Avg Spend/Tourist | `฿47K` | average per event |
+| Visa-Free Impact | `+22%` | average per event |
 
 
----
+## Demo flow
 
-## The Story
+1. Executive Cockpit
+2. Source Market Forecasts
+3. Leading Indicators
+4. Ask AI
+5. Architecture & Data
 
-Thailand targets 35 million tourists but planning is fragmented — TAT, hotels, airlines, and tour operators each forecast independently. ML.FORECAST unifies 146,000 data points across 100 market-destination pairs, detecting shifts 60-90 days early through leading indicators and enabling coordinated capacity planning.
+## Talking points
 
----
+- **35M arrivals** - forecast for Thailand this year (12% YoY growth)
+- **100 forecasts** - market-destination pairs updated daily (ML.FORECAST)
+- **67% recovery** - Chinese market vs 2019 baseline
+- **140% of 2019** - Indian market exceeding pre-COVID levels
+- **60-90 days** - leading indicator early warning window
+- **95% utilization** - Phuket peak season hotel capacity forecast
 
-## Script
+## Business impact
 
-### [0:00–0:45] EXECUTIVE COCKPIT
-
-**Show**: Executive Cockpit tab
-
-> "Thailand on track for 35 million arrivals this year — 90-day forecast shows 12% growth vs last year."
-
-**Action**: Point at 35M arrival forecast KPI
-
-### [0:45–1:30] SOURCE MARKET FORECASTS
-
-**Show**: Source Market Forecasts tab
-
-> "ML.FORECAST generates 90-day predictions for 100 market-destination pairs."
-
-**Action**: Show forecast charts by top 5 markets
-
-### [1:30–2:15] LEADING INDICATORS
-
-**Show**: Leading Indicators tab
-
-> "Composite leading indicator combines flight capacity, visa applications, and search trends."
-
-**Action**: Show leading indicator dashboard
-
-### [2:15–3:00] ASK AI
-
-**Show**: Ask AI tab
-
-> "Dr. Arunee asks: 'Where should we allocate Q1 marketing budget across markets?'"
-
-**Action**: Type: 'Optimal Q1 marketing budget allocation by market'
-
-### [3:00–3:45] ARCHITECTURE & DATA
-
-**Show**: Architecture & Data tab
-
-> "Seven Snowflake capabilities, six AWS services."
-
-**Action**: Walk through architecture diagram
-
+- Thailand tourism contributes ฿2.4 trillion to GDP (18% of national economy) supporting 8M jobs (NESDC Thailand)
+- ML-powered demand forecasting improves accuracy by 20-30% vs traditional time-series methods (McKinsey Travel)
+- Thailand's visa-free policy for Chinese tourists increased arrivals by 45% within 3 months (TAT Thailand)
+- Accurate demand forecasting enables 10-15% better capacity utilization and revenue capture (WTTC)
 
 ---
-
-## Key Demo Differentiators
-
-1. **ML.FORECAST for 100 market-destination pairs** — Only demo forecasting tourism demand at market × destination granularity with confidence bands
-2. **Composite leading indicator (flights + visa + search)** — Multi-signal early warning system predicting demand 60-90 days ahead
-3. **Snowflake Intelligence for tourism planning** — Natural language interface for strategic demand questions
-4. **Thai tourism ecosystem context** — 20 source markets × 5 destinations with realistic seasonal and policy-driven patterns
-5. **Visa policy impact analysis** — AI extracts and quantifies impact of policy changes on demand forecasts
-6. **Forecast accuracy monitoring** — Automated detection of forecast degradation with model retrain triggers
-
-
----
-
-## Demo Prep Checklist
-
-### Data Verification
-- [ ] `SELECT COUNT(*) FROM TOURISM_DEMAND.RAW.ARRIVAL_HISTORY` → 146000
-- [ ] `SELECT COUNT(*) FROM TOURISM_DEMAND.RAW.SEARCH_TRENDS` → 300000
-- [ ] `SELECT COUNT(DISTINCT MARKET_DESTINATION) FROM TOURISM_DEMAND.CURATED.ARRIVAL_TIMESERIES` → 100
-
-### ML Model Verification
-- [ ] `SELECT COUNT(*) FROM TOURISM_DEMAND.ML.ARRIVAL_FORECAST_RESULTS` → >0
-- [ ] `SELECT SUM(CASE WHEN IS_ANOMALY THEN 1 ELSE 0 END) FROM TOURISM_DEMAND.ML.DEMAND_ANOMALY_RESULTS` → >=10
-
-### AI/Agent Verification
-- [ ] `SELECT COUNT(*) FROM TOURISM_DEMAND.AI.MARKET_INTELLIGENCE_BRIEFS` → >=20
-
+Generated from `generator/demo_specs/aws-thailand-tourism-demand-forecast.json`. Do not hand-edit: run
+`python3 generator/gen_repo_docs.py aws-thailand-tourism-demand-forecast` instead.
