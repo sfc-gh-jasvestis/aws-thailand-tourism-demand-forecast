@@ -1,16 +1,13 @@
--- ============================================================================
--- Tourism Demand Forecasting
--- National tourism demand forecasting by source market — ML.FORECAST predicts arrivals from 20 source markets, enabling capacity planning, marketing spend allocation, and workforce scheduling across Thailand's tourism ecosystem.
--- ============================================================================
-USE ROLE ACCOUNTADMIN;
-CREATE DATABASE IF NOT EXISTS TOURISM_DEMAND;
-CREATE WAREHOUSE IF NOT EXISTS DEMAND_WH WAREHOUSE_SIZE = 'MEDIUM' AUTO_SUSPEND = 120 AUTO_RESUME = TRUE;
-USE DATABASE TOURISM_DEMAND;
-CREATE SCHEMA IF NOT EXISTS RAW;
-CREATE SCHEMA IF NOT EXISTS CURATED;
-CREATE SCHEMA IF NOT EXISTS ML;
-CREATE SCHEMA IF NOT EXISTS AI;
-CREATE SCHEMA IF NOT EXISTS SEARCH;
-CREATE SCHEMA IF NOT EXISTS APP;
+-- Generated from generator/demo_specs/aws-thailand-tourism-demand-forecast.json
+-- Regenerate with: python3 generator/gen_repo_docs.py aws-thailand-tourism-demand-forecast
+-- This is the schema that is actually deployed for THAILAND_TOURISM_DEMAND_FORECAST.
 
-USE WAREHOUSE DEMAND_WH;
+-- THAILAND_TOURISM_DEMAND_FORECAST  (Tourism Demand Forecasting)
+-- generated from generator/demo_specs/aws-thailand-tourism-demand-forecast.json - do not hand-edit
+CREATE DATABASE IF NOT EXISTS THAILAND_TOURISM_DEMAND_FORECAST;
+CREATE SCHEMA IF NOT EXISTS THAILAND_TOURISM_DEMAND_FORECAST.RAW;
+CREATE SCHEMA IF NOT EXISTS THAILAND_TOURISM_DEMAND_FORECAST.CURATED;
+CREATE SCHEMA IF NOT EXISTS THAILAND_TOURISM_DEMAND_FORECAST.APP;
+USE DATABASE THAILAND_TOURISM_DEMAND_FORECAST;
+
+-- 5 real regions; entity names carry their region so the two always agree
