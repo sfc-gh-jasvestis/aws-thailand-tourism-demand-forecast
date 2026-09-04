@@ -54,6 +54,7 @@ export default function HomePage() {
         <div className="lg:col-span-1">
           <GeoMap
             country="thailand"
+            regions={data?.regions}
             markers={[{"label": "Bangkok", "value": "1.2M arrivals/mo", "color": "blue", "size": "lg"}, {"label": "Phuket", "value": "840K arrivals", "color": "blue", "size": "lg"}, {"label": "Chiang Mai", "value": "420K arrivals", "color": "green", "size": "md"}, {"label": "Samui", "value": "Occ: 84%", "color": "green", "size": "md"}, {"label": "Pattaya", "value": "Occ: 72%", "color": "amber", "size": "sm"}]}
             routes={[]}
             title="Geographic Overview"
@@ -70,7 +71,7 @@ export default function HomePage() {
           title="Tourist Arrivals (Monthly)"
         />
         <Chart
-          data={data?.categories || [{ category: 'North', count: 82 }, { category: 'Central', count: 74 }, { category: 'South', count: 91 }, { category: 'Highland', count: 68 }, { category: 'Coastal', count: 77 }]}
+          data={data?.categoryMetric || [{ category: 'North', count: 82 }, { category: 'Central', count: 74 }, { category: 'South', count: 91 }, { category: 'Highland', count: 68 }, { category: 'Coastal', count: 77 }]}
           type="bar"
           xKey="category"
           yKeys={[{ key: 'count', name: '฿B' }]}
