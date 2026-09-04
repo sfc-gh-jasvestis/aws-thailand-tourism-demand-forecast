@@ -54,6 +54,7 @@ export default function HomePage() {
         <div className="lg:col-span-1">
           <GeoMap
             country="thailand"
+            labels={{ entity: 'Markets', event: 'Search Signals', alert: 'Forecast Misses' }}
             regions={data?.regions}
             markers={[{"label": "Bangkok", "value": "1.2M arrivals/mo", "color": "blue", "size": "lg"}, {"label": "Phuket", "value": "840K arrivals", "color": "blue", "size": "lg"}, {"label": "Chiang Mai", "value": "420K arrivals", "color": "green", "size": "md"}, {"label": "Samui", "value": "Occ: 84%", "color": "green", "size": "md"}, {"label": "Pattaya", "value": "Occ: 72%", "color": "amber", "size": "sm"}]}
             routes={[]}
@@ -84,8 +85,13 @@ export default function HomePage() {
         columns={[
           { key: 'id', header: 'Rank' },
           { key: 'name', header: 'Market' },
+          { key: 'region', header: 'Region' },
           { key: 'status', header: 'Trend' },
-          { key: 'value', header: 'Arrivals (K)' },
+          { key: 'm1', header: 'Arrivals (K)' },
+          { key: 'm2', header: 'Revenue Forecast' },
+          { key: 'm3', header: 'Forecast Accuracy' },
+          { key: 'events', header: 'Search Signals' },
+          { key: 'alerts', header: 'Forecast Misses' },
         ]}
         data={data?.entities || []}
         title="Top Source Markets"
