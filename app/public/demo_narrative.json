@@ -1,0 +1,146 @@
+{
+  "title": "Thailand Tourism Demand Forecast",
+  "duration": "6 minutes",
+  "thesis": "Snowflake turns daily room-night demand and booking pace flags for a fictional Thai hotel group into flag and early sell-out KPIs, 7-day early sell-out risk scores, a network room-night forecast, pickup forecast error anomalies and grounded AI answers, all on one governed platform.",
+  "tabs": [
+    {
+      "id": "executive-cockpit",
+      "persona": {
+        "name": "Siriporn Wattanakul",
+        "role": "Director of Revenue Management (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Flag-free day rate, booking pace flags raised, early sell-outs and room revenue in THB for 40 fictional hotels in Bangkok, Phuket, Chiang Mai, Pattaya and Krabi.",
+        "Every KPI is a numerator over a denominator in a curated dynamic table, so it can be traced back to property-day rows.",
+        "The flag-type chart shows which pace flags end in early sell-outs and which are always resolved, such as flight disruptions."
+      ],
+      "show": [
+        "KPI cards",
+        "Daily pace flags",
+        "Pace flags by type",
+        "Property table"
+      ],
+      "call_out": "One governed set of room-night demand KPIs, traceable to source rows",
+      "transition": {
+        "next_tab": "predictive",
+        "line": "Which properties should the revenue team watch first?"
+      }
+    },
+    {
+      "id": "predictive",
+      "persona": {
+        "name": "Kittipong Srisuk",
+        "role": "Revenue Analyst (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Snowflake ML classification scores the probability that each property sells out early in the next 7 days.",
+        "The holdout line shows precision and recall on the most recent labelled days, against the base rate.",
+        "The forecast projects network-wide room nights for 14 days, and anomaly detection flags pickup forecast error outliers per property."
+      ],
+      "show": [
+        "Holdout metrics",
+        "Risk by property",
+        "Room-night forecast",
+        "Pickup forecast error anomalies"
+      ],
+      "call_out": "Honest, evaluated ML inside the data platform",
+      "transition": {
+        "next_tab": "controls",
+        "line": "Are our revenue controls keeping up?"
+      }
+    },
+    {
+      "id": "controls",
+      "persona": {
+        "name": "Siriporn Wattanakul",
+        "role": "Director of Revenue Management (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Pickup review adherence, allotment confirmation coverage and pending confirmations frame the control gaps.",
+        "Pickup review adherence against early sell-outs by property shows where missed reviews and sell-outs coincide; it is a synthetic association, not proof of cause.",
+        "The action memo is drafted by an LLM from the KPI, property, pace-flag-type and risk rows only, and needs human review."
+      ],
+      "show": [
+        "Control KPIs",
+        "Pickup review scatter",
+        "Action memo"
+      ],
+      "call_out": "Grounded AI drafts, with a human in the loop",
+      "transition": {
+        "next_tab": "live",
+        "line": "What is happening on the booking channels right now?"
+      }
+    },
+    {
+      "id": "live",
+      "persona": {
+        "name": "Kittipong Srisuk",
+        "role": "Revenue Analyst (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Simulated channel booking events land in RAW.LIVE_BOOKINGS: through Amazon Data Firehose, S3 and Snowpipe in the AWS build, or APP.SIMULATE_BOOKINGS in the Snowflake-only build.",
+        "PACE_FLAG events are short-lead, high-value bookings; the alert logs them with an SOP hint and the current risk band, then emails the on-call revenue analyst.",
+        "The lag card shows the time from send (or generation) to table."
+      ],
+      "show": [
+        "Live booking KPIs",
+        "Latest booking events",
+        "Alert log"
+      ],
+      "call_out": "Live bookings and alerting on the same platform as the KPIs",
+      "transition": {
+        "next_tab": "ask-ai",
+        "line": "Can the team just ask questions of this data?"
+      }
+    },
+    {
+      "id": "ask-ai",
+      "persona": {
+        "name": "Kittipong Srisuk",
+        "role": "Revenue Analyst (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "The Cortex Agent uses Cortex Analyst over the semantic view for metrics, and Cortex Search over synthetic pace flag SOPs for procedures.",
+        "Each answer shows the generated SQL and the SOP IDs it cites.",
+        "Try: Which 3 properties have the most early sell-outs, and what SOP applies to the top one?"
+      ],
+      "show": [
+        "Agent answer",
+        "Generated SQL",
+        "SOP citations"
+      ],
+      "call_out": "Answers grounded in governed data and documents",
+      "transition": {
+        "next_tab": "architecture",
+        "line": "How is this built?"
+      }
+    },
+    {
+      "id": "architecture",
+      "persona": {
+        "name": "Siriporn Wattanakul",
+        "role": "Director of Revenue Management (fictional)",
+        "avatar": ""
+      },
+      "talking_points": [
+        "Both architectures are shown, the current build first: Snowflake only, or AWS Firehose, Bedrock and QuickSight on Snowflake.",
+        "Every flow in the diagrams is created by the scripts in the repository, from a seeded synthetic generator.",
+        "Alerts, tasks and the app service stay suspended between demos."
+      ],
+      "show": [
+        "Architecture diagrams",
+        "Implementation status"
+      ],
+      "call_out": "One platform for data, ML, search, agents and the app",
+      "transition": {
+        "next_tab": "executive-cockpit",
+        "line": "Back to the cockpit for questions."
+      }
+    }
+  ]
+}
